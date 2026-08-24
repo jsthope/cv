@@ -1,0 +1,47 @@
+---
+import SiteLayout from './SiteLayout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<SiteLayout title={`${frontmatter.title} - Luca Troger`}>
+	<main class="project-page markdown-project-page">
+		<header class="site-header project-header">
+			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
+			<a class="back-link" href="/"><- Selected work</a>
+			<p class="header-location">{frontmatter.year}</p>
+		</header>
+
+		<article class="project-article">
+			<div class="article-heading">
+				<p class="eyebrow">{frontmatter.category}</p>
+				<h1>{frontmatter.projectTitle ?? frontmatter.title}</h1>
+				<p class="article-intro">{frontmatter.description}</p>
+			</div>
+
+			<div class={`article-image article-image--${frontmatter.imageMode ?? 'light'}`}>
+				<img src={frontmatter.image} alt={frontmatter.imageAlt ?? frontmatter.title} />
+			</div>
+
+			<div class="markdown-article">
+				<slot />
+			</div>
+
+			{frontmatter.repo && (
+				<aside class="repo-feature">
+					<div>
+						<p class="eyebrow">Source / GitHub</p>
+						<h2>Simple Lunar Xray</h2>
+						<p>The complete source and original technical notes for this experiment.</p>
+					</div>
+					<a class="repo-link" href={frontmatter.repo} target="_blank" rel="noreferrer">Read the repository <span>-></span></a>
+				</aside>
+			)}
+		</article>
+
+		<footer class="site-footer">
+			<p>© 2026 Luca Troger</p>
+			<a href="mailto:hello@lucatroger.com">hello@lucatroger.com <span>-></span></a>
+		</footer>
+	</main>
+</SiteLayout>

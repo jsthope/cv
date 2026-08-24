@@ -1,0 +1,43 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { ctfTeams } from '../data/projects';
+---
+
+<SiteLayout title="CTF Career — Luca Troger">
+	<main class="career-page">
+		<header class="site-header project-header">
+			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
+			<a class="back-link" href="/"><- Selected work</a>
+			<p class="header-location">CTF CAREER</p>
+		</header>
+
+		<article class="career-article">
+			<div class="career-heading">
+				<p class="eyebrow">CTF CAREER / 2020—26</p>
+				<h1>Teams I joined.<br /><em>Things I learned.</em></h1>
+				<p class="career-intro">A short archive of the teams, platforms and competition formats that shaped my way of thinking about security.</p>
+			</div>
+
+			<section class="team-list" aria-label="CTF teams and communities">
+				{ctfTeams.map((team, index) => (
+					<article class="team-entry">
+						<div class="team-number">0{index + 1}</div>
+						<div class={`team-logo team-logo--${team.imageMode}`}>
+							<img src={team.image} alt={`${team.title} logo`} loading="lazy" />
+						</div>
+						<div class="team-copy">
+							<p>{team.type}</p>
+							<h2>{team.title}</h2>
+							<span>{team.description}</span>
+						</div>
+					</article>
+				))}
+			</section>
+		</article>
+
+		<footer class="site-footer">
+			<p>© 2026 Luca Troger</p>
+			<a href="mailto:hello@lucatroger.com">hello@lucatroger.com <span>-></span></a>
+		</footer>
+	</main>
+</SiteLayout>

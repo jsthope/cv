@@ -1,0 +1,21 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="paper" x1="0" y1="0" x2="1200" y2="1200" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#D7E0DE"/>
+    <stop offset=".5" stop-color="#9AACA8"/>
+    <stop offset="1" stop-color="#415352"/>
+  </linearGradient>
+  <filter id="shadow" x="0" y="0" width="1200" height="1200" filterUnits="userSpaceOnUse">
+    <feDropShadow dx="0" dy="28" stdDeviation="30" flood-color="#1B2A2A" flood-opacity=".4"/>
+  </filter>
+</defs>
+<rect width="1200" height="1200" fill="url(#paper)"/>
+<g filter="url(#shadow)">
+  <path d="M195 838L366 278L947 417L776 977L195 838Z" fill="#E8E5D7"/>
+  <path d="M366 278L776 977" stroke="#566865" stroke-width="3"/>
+  <path d="M947 417L195 838" stroke="#B2C0BA" stroke-width="3"/>
+  <circle cx="655" cy="611" r="137" fill="#EAA06C"/>
+  <circle cx="655" cy="611" r="137" stroke="#263A38" stroke-width="5"/>
+</g>
+<text x="58" y="1120" fill="#EEF0E7" font-family="monospace" font-size="21" letter-spacing="5">MATERIAL NOTES / 04</text>
+</svg>

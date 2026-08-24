@@ -1,0 +1,41 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { projects } from '../data/projects';
+---
+
+<SiteLayout>
+	<main class="home-shell">
+		<header class="site-header">
+			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
+			<a class="header-career-link" href="/ctf-career">CTF CAREER <span>-></span></a>
+			<p class="header-location">Zurich, CH</p>
+		</header>
+
+		<section class="hero" aria-labelledby="intro-title">
+			<div class="hero-intro">
+				<p class="eyebrow">Independent hacker / builder</p>
+				<h1 id="intro-title">Luca <em>Troger</em></h1>
+				<p class="hero-note">Selected work, field notes<br />and things in progress.</p>
+			</div>
+
+			{projects.map((project) => (
+				<a class={`project-card ${project.className}`} href={project.link ?? `/projects/${project.slug}`}>
+					<div class={`project-image project-image--${project.imageMode}`}>
+						<img src={project.image} alt={`Project image: ${project.title}`} loading="lazy" />
+						<span class="project-index">{project.index}</span>
+						<span class="project-arrow" aria-hidden="true">-></span>
+					</div>
+					<div class="project-label">
+						<span>{project.title}</span>
+						<span>{project.category}</span>
+					</div>
+				</a>
+			))}
+		</section>
+
+		<footer class="site-footer">
+			<p>© 2026 Luca Troger</p>
+			<a href="mailto:hello@lucatroger.com">hello@lucatroger.com <span>-></span></a>
+		</footer>
+	</main>
+</SiteLayout>

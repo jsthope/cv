@@ -1,0 +1,11 @@
+<svg width="1100" height="650" viewBox="0 0 1100 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1100" height="650" fill="#E6E0D5"/>
+<path d="M0 0H1100V650H0V0Z" fill="#E6E0D5"/>
+<path d="M-24 482C122 428 215 493 346 402C461 322 522 170 659 203C790 234 834 422 1124 323" stroke="#C85D38" stroke-width="22"/>
+<path d="M-24 482C122 428 215 493 346 402C461 322 522 170 659 203C790 234 834 422 1124 323" stroke="#172E34" stroke-width="4" stroke-dasharray="2 17"/>
+<circle cx="660" cy="203" r="50" fill="#E6E0D5" stroke="#172E34" stroke-width="4"/>
+<circle cx="660" cy="203" r="9" fill="#C85D38"/>
+<path d="M130 113H392" stroke="#172E34" stroke-width="2"/>
+<path d="M130 131H312" stroke="#172E34" stroke-width="2"/>
+<text x="62" y="588" fill="#172E34" font-family="monospace" font-size="20" letter-spacing="5">QUIET SIGNAL / 05</text>
+</svg>

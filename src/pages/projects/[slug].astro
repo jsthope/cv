@@ -1,0 +1,52 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+	return projects.filter((project) => project.slug !== 'capture-the-flag' && project.slug !== 'x-ray').map((project) => ({
+		params: { slug: project.slug },
+		props: { project },
+	}));
+}
+
+const { project } = Astro.props;
+---
+
+<SiteLayout title={`${project.title} - Luca Troger`}>
+	<main class="project-page">
+		<header class="site-header project-header">
+			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
+			<a class="back-link" href="/"><- Selected work</a>
+			<p class="header-location">{project.year}</p>
+		</header>
+
+		<article class={`project-article ${project.slug === 'wikijump' ? 'project-article--wikijump' : ''}`}>
+			<div class="article-heading">
+				<p class="eyebrow">Project {project.index} / {project.category}</p>
+				<h1>{project.title}</h1>
+				<p class="article-intro">{project.intro}</p>
+			</div>
+
+			<div class={`article-image article-image--${'detailImageMode' in project ? project.detailImageMode : project.imageMode}`}>
+				<img src={project.image} alt={`Project image: ${project.title}`} />
+			</div>
+
+			<div class="article-content">
+				<div class="article-meta">
+					<span>Project notes</span>
+					<span>{project.year}</span>
+				</div>
+				<div class="article-copy">
+					{project.body.map((paragraph) => <p>{paragraph}</p>)}
+					{'repo' in project && <a class="repo-link" href={project.repo} target="_blank" rel="noreferrer">Open repository <span>-></span></a>}
+				</div>
+			</div>
+
+		</article>
+
+		<footer class="site-footer">
+			<p>© 2026 Luca Troger</p>
+			<a href="mailto:hello@lucatroger.com">hello@lucatroger.com <span>-></span></a>
+		</footer>
+	</main>
+</SiteLayout>

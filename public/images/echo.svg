@@ -1,0 +1,21 @@
+<svg width="960" height="1200" viewBox="0 0 960 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="50" y1="0" x2="870" y2="1200" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#F1A17C"/>
+    <stop offset="0.5" stop-color="#C54F4D"/>
+    <stop offset="1" stop-color="#2D1933"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(430 405) rotate(67) scale(550 480)" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#F8DFAB"/>
+    <stop offset="1" stop-color="#F8DFAB" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="960" height="1200" fill="url(#bg)"/>
+<rect width="960" height="1200" fill="url(#glow)"/>
+<circle cx="480" cy="510" r="265" stroke="#F7DDB1" stroke-width="2" stroke-opacity=".78"/>
+<circle cx="480" cy="510" r="204" stroke="#F7DDB1" stroke-width="1.5" stroke-opacity=".56"/>
+<circle cx="480" cy="510" r="144" stroke="#F7DDB1" stroke-width="1" stroke-opacity=".42"/>
+<path d="M0 795C145 714 258 733 391 821C535 916 677 992 960 855" stroke="#2E1934" stroke-width="6" stroke-opacity=".65"/>
+<path d="M0 860C166 771 293 798 410 879C547 974 681 1031 960 933" stroke="#F6CF9D" stroke-width="2" stroke-opacity=".6"/>
+<text x="54" y="1115" fill="#F8DFAB" font-family="monospace" font-size="22" letter-spacing="5">ECHO / 01</text>
+</svg>
