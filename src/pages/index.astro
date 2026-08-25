@@ -40,3 +40,49 @@ import { projects } from '../data/projects';
 		</footer>
 	</main>
 </SiteLayout>
+
+<script>
+	import { navigate } from 'astro:transitions/client';
+
+	const homeShell = document.querySelector('.home-shell');
+
+	if (homeShell) {
+		document.addEventListener(
+			'click',
+			(event) => {
+				if (!(event.target instanceof Element)) return;
+
+				const card = event.target.closest('.project-card');
+				if (!(card instanceof HTMLAnchorElement)) return;
+				if (event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+				if (card.dataset.transitioning === 'true') {
+					event.preventDefault();
+					return;
+				}
+
+				event.preventDefault();
+				card.dataset.transitioning = 'true';
+				document.documentElement.classList.add('home-transitioning');
+
+				window.setTimeout(() => {
+					navigate(card.href, { sourceElement: card });
+				}, 800);
+			},
+			true,
+		);
+	}
+
+	document.addEventListener('astro:after-swap', () => {
+		document.documentElement.classList.remove('home-transitioning');
+
+		const projectPage = document.querySelector('.project-page');
+		if (!projectPage) return;
+
+		document.documentElement.classList.add('project-page-entering');
+		projectPage.addEventListener(
+			'animationend',
+			() => document.documentElement.classList.remove('project-page-entering'),
+			{ once: true },
+		);
+	});
+</script>

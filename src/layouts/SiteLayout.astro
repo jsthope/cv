@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title?: string;
@@ -15,6 +16,7 @@ const { title = 'Luca Troger - Portfolio' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content="Portfolio of Luca Troger" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<ClientRouter />
 		<title>{title}</title>
 	</head>
 	<body>
