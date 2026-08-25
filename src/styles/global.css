@@ -24,6 +24,12 @@ body {
 	background: #080808;
 }
 
+html:has(.home-shell),
+body:has(.home-shell) {
+	overflow: hidden;
+	overscroll-behavior: none;
+}
+
 body::before,
 body::after {
 	position: fixed;
@@ -100,6 +106,8 @@ a {
 }
 
 .header-location {
+	grid-column: 3;
+	justify-self: end;
 	text-align: right !important;
 }
 
@@ -363,6 +371,219 @@ a {
 	margin: 10rem auto 9rem;
 }
 
+.achievements {
+	margin-bottom: 8rem;
+	padding-bottom: 4rem;
+	border-bottom: 1px solid rgba(242, 240, 235, 0.22);
+}
+
+.achievements-heading {
+	display: grid;
+	grid-template-columns: 1fr 1.8fr;
+	align-items: end;
+	column-gap: 2rem;
+}
+
+.achievements-heading .eyebrow {
+	align-self: start;
+	margin: 0.35rem 0 0;
+}
+
+.achievements-heading h2 {
+	grid-column: 2;
+	justify-self: end;
+	margin: 0;
+	text-align: right;
+	color: #f4f1eb;
+	font-size: clamp(3rem, 6vw, 6rem);
+	font-weight: 500;
+	letter-spacing: -0.09em;
+	line-height: 0.86;
+}
+
+.achievement-list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin-top: 4rem;
+}
+
+.achievement-entry {
+	display: flex;
+	flex-direction: column;
+	height: 15rem;
+	min-height: 15rem;
+	box-sizing: border-box;
+	padding-top: 1.1rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.achievement-entry--world,
+.achievement-entry--switzerland,
+.achievement-entry--shc {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	padding-left: 1.5rem;
+}
+
+.achievement-entry--world::before,
+.achievement-entry--switzerland::before,
+.achievement-entry--shc::before {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	content: '';
+	background-position: center;
+	background-size: cover;
+	opacity: 0.22;
+	pointer-events: none;
+}
+
+.achievement-entry--world::after,
+.achievement-entry--switzerland::after,
+.achievement-entry--shc::after {
+	position: absolute;
+	inset: 0;
+	z-index: 4;
+	content: '';
+	background-color: #000;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 180ms ease;
+}
+
+.achievement-entry--switzerland::after {
+	background-image: url('/hacking/achievement-scoreboard-htb-switzerland.webp');
+}
+
+.achievement-entry--world::after {
+	background-image: url('/hacking/achievement-scoreboard-htb-world.jpeg');
+}
+
+.achievement-entry--shc::after {
+	background-image: url('/hacking/achievement-scoreboard-shc.jpeg');
+	background-position: 24% center;
+}
+
+.achievement-entry--world::before {
+	background-image: url('/hacking/achievement-htb.png');
+}
+
+.achievement-entry--world {
+	background: #000;
+}
+
+.achievement-entry--world::before {
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.achievement-entry--switzerland::before {
+	background-image: url('/hacking/achievement-htb.png');
+	opacity: 0.22;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.achievement-entry--switzerland {
+	background: #000;
+}
+
+.achievement-entry--shc::before {
+	background-image: url('/hacking/achievement-shc.png');
+}
+
+.achievement-entry--shc {
+	background: #000;
+}
+
+.achievement-entry--shc::before {
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.achievement-entry--world > *,
+.achievement-entry--switzerland > *,
+.achievement-entry--shc > * {
+	position: relative;
+	z-index: 3;
+	transition: opacity 180ms ease;
+}
+
+.achievement-entry:hover > * {
+	opacity: 0;
+}
+
+.achievement-entry:hover::after {
+	opacity: 1;
+}
+
+.achievement-entry--shc {
+	padding-left: 1.5rem;
+	border-left: 1px solid rgba(242, 240, 235, 0.22);
+}
+
+.achievement-source {
+	display: flex;
+	min-height: 1.7rem;
+	align-items: flex-start;
+	margin: 0;
+	font-family: 'DM Mono', monospace;
+	font-size: 0.58rem;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: #77746e;
+}
+
+.achievement-rank {
+	display: grid;
+	place-items: center;
+	flex: 0 0 4rem;
+	height: 4rem;
+	margin: 2.7rem 0 1rem;
+	transform: translateX(-0.75rem);
+	text-align: center;
+	font-size: clamp(1.25rem, 2vw, 1.8rem);
+	font-weight: 500;
+	letter-spacing: -0.06em;
+	line-height: 0.95;
+	color: #f2f0eb;
+}
+
+.achievement-label {
+	margin: -0.4rem 0 1rem;
+	text-align: center;
+	font-size: 0.72rem;
+	line-height: 1.3;
+	color: #d8d4cc;
+}
+
+.achievement-footer {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: auto;
+	width: 100%;
+	box-sizing: border-box;
+	padding-right: 1.5rem;
+}
+
+.achievement-footer span {
+	font-size: 0.72rem;
+	line-height: 1.45;
+	color: #aaa69e;
+}
+
+.achievement-footnote {
+	max-width: 9rem;
+	text-align: right;
+}
+
 .career-heading {
 	display: grid;
 	grid-template-columns: 1fr 1.8fr;
@@ -379,7 +600,9 @@ a {
 .career-heading h1 {
 	grid-column: 2;
 	grid-row: 1 / span 2;
+	justify-self: end;
 	margin: 0;
+	text-align: right;
 	color: #f4f1eb;
 	font-size: clamp(3.5rem, 7vw, 7.5rem);
 	font-weight: 500;
@@ -433,6 +656,10 @@ a {
 	overflow: hidden;
 	background: #0b0b0b;
 	border: 1px solid rgba(242, 240, 235, 0.18);
+}
+
+.team-logo--dark {
+	background: #000;
 }
 
 .team-logo--light {
@@ -569,6 +796,11 @@ a {
 .article-image--white img {
 	object-fit: contain;
 	padding: 0;
+}
+
+.project-external-link {
+	width: min(100%, 800px);
+	margin: 2rem 0 0 auto;
 }
 
 .article-content {
@@ -763,6 +995,26 @@ a {
 	opacity: 0.58;
 }
 
+.project-sources {
+	margin-top: 3rem;
+	padding-top: 1.4rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.18);
+}
+
+.project-sources .eyebrow {
+	margin-bottom: 1rem;
+}
+
+.project-source-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8rem 2rem;
+}
+
+.project-source-links .repo-link {
+	margin: 0;
+}
+
 .repo-feature {
 	display: grid;
 	grid-template-columns: 1fr 1.8fr;
@@ -935,6 +1187,362 @@ a {
 	margin-top: 0.6rem;
 }
 
+/* Rover project */
+.rover-story {
+	margin-top: 8rem;
+}
+
+.rover-introduction {
+	display: grid;
+	grid-template-columns: 1fr 1.8fr;
+	align-items: end;
+	gap: 2rem;
+	padding: 1.5rem 0 6rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.rover-introduction h2,
+.rover-section-heading h2 {
+	margin: 0;
+	font-size: clamp(2.8rem, 5.2vw, 5.6rem);
+	font-weight: 500;
+	letter-spacing: -0.09em;
+	line-height: 0.87;
+	color: #f4f1eb;
+}
+
+.rover-introduction h2 em,
+.rover-section-heading h2 em {
+	font-style: normal;
+	font-weight: 400;
+	color: #a6a39c;
+}
+
+.rover-introduction .eyebrow,
+.rover-section-heading .eyebrow {
+	margin-bottom: 1.2rem;
+}
+
+.rover-introduction-copy {
+	max-width: 28rem;
+	justify-self: end;
+}
+
+.rover-introduction-copy p,
+.rover-section-heading > p:last-child {
+	margin: 0 0 1rem;
+	font-size: 0.92rem;
+	line-height: 1.65;
+	color: #bbb7af;
+}
+
+.rover-introduction-copy p:last-child {
+	margin-bottom: 0;
+	color: #85817a;
+}
+
+.rover-video-section,
+.rover-system-section {
+	margin-top: 1rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.rover-section-heading {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 2rem;
+	margin-bottom: 2.8rem;
+}
+
+.rover-section-heading h2 {
+	font-size: clamp(2.8rem, 5vw, 5.2rem);
+}
+
+.rover-video-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+.rover-video-card {
+	margin: 0;
+}
+
+.rover-video-card--single {
+	max-width: 800px;
+}
+
+.rover-video-frame {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: 16 / 10;
+	background: #101010;
+	border: 1px solid rgba(242, 240, 235, 0.16);
+}
+
+.rover-video-frame::after {
+	position: absolute;
+	inset: 0;
+	content: '';
+	border: 1px solid rgba(242, 240, 235, 0.08);
+	pointer-events: none;
+}
+
+.rover-video-frame video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.rover-video-frame video::-webkit-media-controls-panel {
+	opacity: 0;
+	transition: opacity 180ms ease;
+}
+
+.rover-video-frame.rover-video-controls-visible video::-webkit-media-controls-panel {
+	opacity: 1;
+}
+
+.rover-video-card figcaption {
+	padding: 1rem 0.05rem 0;
+}
+
+.rover-video-card h3 {
+	margin: 0 0 0.55rem;
+	font-size: clamp(1.25rem, 2vw, 1.8rem);
+	font-weight: 500;
+	letter-spacing: -0.055em;
+	line-height: 1;
+	color: #f2f0eb;
+}
+
+.rover-video-card figcaption p {
+	max-width: 28rem;
+	margin: 0;
+	font-size: 0.76rem;
+	line-height: 1.55;
+	color: #929089;
+}
+
+.rover-vio-note {
+	max-width: 42rem;
+	margin: 1.6rem 0 0;
+	font-size: 0.82rem;
+	line-height: 1.65;
+	color: #929089;
+}
+
+.rover-repo-link {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 2rem;
+	margin-top: 8rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.rover-repo-link .eyebrow {
+	margin: 0;
+}
+
+.rover-repo-link .repo-link {
+	margin: 0;
+}
+
+.rover-lidar-section,
+.rover-technical-section {
+	margin-top: 8rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.rover-lidar-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+.rover-lidar-figure {
+	margin: 0;
+	padding: 0.45rem;
+	background: #2e2e2e;
+	border: 1px solid rgba(242, 240, 235, 0.14);
+}
+
+.rover-lidar-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+
+.rover-lidar-figure figcaption {
+	padding: 0.75rem 0.35rem 0.2rem;
+	font-family: 'DM Mono', monospace;
+	font-size: 0.56rem;
+	letter-spacing: 0.045em;
+	text-transform: uppercase;
+	color: #9b9891;
+}
+
+.rover-technical-section {
+	display: grid;
+	grid-template-columns: 1fr 1.8fr;
+	gap: 2rem;
+}
+
+.rover-section-heading--technical {
+	display: block;
+	margin: 0;
+}
+
+.rover-section-heading--technical .eyebrow {
+	margin-bottom: 1.2rem;
+}
+
+.rover-section-heading--technical h2 {
+	font-size: clamp(2.7rem, 5vw, 5rem);
+}
+
+.rover-technical-copy {
+	max-width: 40rem;
+	justify-self: end;
+}
+
+.rover-technical-copy p {
+	margin: 0 0 1.35rem;
+	font-size: 0.92rem;
+	line-height: 1.7;
+	color: #bbb7af;
+}
+
+.rover-technical-copy p:last-child {
+	margin-bottom: 0;
+}
+
+.rover-technical-copy strong {
+	font-weight: 600;
+	color: #f2f0eb;
+}
+
+.rover-system-section {
+	margin-top: 8rem;
+}
+
+.rover-section-heading--system {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: end;
+	margin-bottom: 3.5rem;
+}
+
+.rover-section-heading--system .eyebrow {
+	grid-column: 1;
+	grid-row: 1;
+	align-self: start;
+}
+
+.rover-section-heading--system h2 {
+	grid-column: 1;
+	grid-row: 2;
+	font-size: clamp(2.7rem, 5vw, 5rem);
+}
+
+.rover-section-heading--system > p:last-child {
+	grid-column: 2;
+	grid-row: 2;
+	max-width: 25rem;
+	justify-self: end;
+	margin: 0;
+}
+
+.rover-diagram {
+	margin: 0;
+	padding: clamp(0.45rem, 1.3vw, 1rem);
+	background: #f5f5f2;
+}
+
+.rover-diagram img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.rover-diagram figcaption {
+	padding: 0.75rem 0.25rem 0.15rem;
+	font-family: 'DM Mono', monospace;
+	font-size: 0.56rem;
+	letter-spacing: 0.045em;
+	text-transform: uppercase;
+	color: #686762;
+}
+
+.rover-focus {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.rover-focus-card {
+	min-height: 13rem;
+	padding: 1.1rem 0 0;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.rover-focus-card span {
+	display: block;
+	margin-bottom: 2.6rem;
+	font-family: 'DM Mono', monospace;
+	font-size: 0.58rem;
+	letter-spacing: 0.07em;
+	color: #77746e;
+}
+
+.rover-focus-card h3 {
+	margin: 0 0 0.7rem;
+	font-size: 1.35rem;
+	font-weight: 500;
+	letter-spacing: -0.055em;
+	line-height: 1;
+	color: #f2f0eb;
+}
+
+.rover-focus-card p {
+	max-width: 18rem;
+	margin: 0;
+	font-size: 0.72rem;
+	line-height: 1.55;
+	color: #929089;
+}
+
+.rover-outro {
+	display: grid;
+	grid-template-columns: 1fr 1.8fr;
+	gap: 2rem;
+	margin-top: 8rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.2);
+}
+
+.rover-outro .eyebrow {
+	margin: 0;
+}
+
+.rover-outro-copy {
+	max-width: 34rem;
+	margin: 0;
+	font-size: clamp(1.35rem, 2.2vw, 2rem);
+	line-height: 1.25;
+	letter-spacing: -0.04em;
+	color: #d8d4cc;
+}
+
 @media (max-width: 800px) {
 	.home-shell,
 	.project-page {
@@ -1048,6 +1656,53 @@ a {
 		margin: 7rem auto 6rem;
 	}
 
+	.achievements {
+		margin-bottom: 5rem;
+		padding-bottom: 3rem;
+	}
+
+	.achievements-heading {
+		display: block;
+	}
+
+	.achievements-heading h2 {
+		margin-top: 0.8rem;
+		font-size: clamp(3.5rem, 15vw, 6rem);
+	}
+
+	.achievement-list {
+		display: block;
+		margin-top: 3rem;
+	}
+
+	.achievement-entry {
+		height: 12rem;
+		min-height: 12rem;
+		padding: 1.1rem 0 1.5rem;
+	}
+
+	.achievement-entry--shc {
+		padding-left: 1rem;
+		border-left: 0;
+	}
+
+	.achievement-entry--world,
+	.achievement-entry--switzerland {
+		padding-left: 1rem;
+	}
+
+	.achievement-footer {
+		margin-top: auto;
+		width: 100%;
+		padding-right: 1rem;
+	}
+
+	.achievement-rank {
+		min-height: 4rem;
+		margin: 1.5rem 0;
+		transform: translateX(-0.5rem);
+	}
+
 	.career-heading {
 		display: block;
 		margin-bottom: 3.5rem;
@@ -1144,6 +1799,76 @@ a {
 
 	.article-content {
 		margin-top: 3.5rem;
+	}
+
+	.rover-story {
+		margin-top: 5rem;
+	}
+
+	.rover-introduction,
+	.rover-section-heading,
+	.rover-section-heading--system,
+	.rover-technical-section,
+	.rover-outro {
+		display: block;
+	}
+
+	.rover-introduction {
+		padding-bottom: 4rem;
+	}
+
+	.rover-introduction h2,
+	.rover-section-heading h2,
+	.rover-section-heading--system h2 {
+		font-size: clamp(2.8rem, 13vw, 5rem);
+	}
+
+	.rover-introduction-copy,
+	.rover-section-heading--system > p:last-child {
+		margin-top: 2rem;
+	}
+
+	.rover-section-heading {
+		margin-bottom: 2rem;
+	}
+
+	.rover-video-grid,
+	.rover-lidar-grid,
+	.rover-focus {
+		grid-template-columns: 1fr;
+		gap: 2.7rem;
+	}
+
+	.rover-lidar-section,
+	.rover-technical-section,
+	.rover-system-section,
+	.rover-outro {
+		margin-top: 5.5rem;
+	}
+
+	.rover-technical-copy {
+		margin-top: 2rem;
+	}
+
+	.rover-repo-link {
+		display: block;
+		margin-top: 5.5rem;
+	}
+
+	.rover-repo-link .repo-link {
+		margin-top: 2rem;
+	}
+
+	.rover-focus-card {
+		min-height: 0;
+	}
+
+	.rover-focus-card span {
+		margin-bottom: 1.5rem;
+	}
+
+	.rover-outro-copy {
+		font-size: 1.4rem;
 	}
 
 	.article-meta {

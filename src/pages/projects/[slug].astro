@@ -22,7 +22,7 @@ const { project } = Astro.props;
 
 		<article class={`project-article ${project.slug === 'wikijump' ? 'project-article--wikijump' : ''}`}>
 			<div class="article-heading">
-				<p class="eyebrow">Project {project.index} / {project.category}</p>
+				<p class="eyebrow">{'homeMeta' in project ? project.homeMeta : `Project ${project.index} / ${project.category}`}</p>
 				<h1>{project.title}</h1>
 				<p class="article-intro">{project.intro}</p>
 			</div>
@@ -31,22 +31,157 @@ const { project } = Astro.props;
 				<img src={project.image} alt={`Project image: ${project.title}`} />
 			</div>
 
-			<div class="article-content">
-				<div class="article-meta">
-					<span>Project notes</span>
-					<span>{project.year}</span>
+			{'externalUrl' in project && (
+				<div class="project-external-link">
+					<a class="repo-link" href={project.externalUrl} target="_blank" rel="noreferrer">
+						{project.externalLabel} <span>-></span>
+					</a>
 				</div>
-				<div class="article-copy">
-					{project.body.map((paragraph) => <p>{paragraph}</p>)}
-					{'repo' in project && <a class="repo-link" href={project.repo} target="_blank" rel="noreferrer">Open repository <span>-></span></a>}
+			)}
+
+			{project.slug === 'rover' ? (
+				<div class="rover-story">
+					<section class="rover-technical-section" aria-labelledby="rover-technical-title">
+						<div class="rover-section-heading rover-section-heading--technical">
+							<p class="eyebrow">01 / Navigation system</p>
+							<h2 id="rover-technical-title">The navigation<br /><em>system.</em></h2>
+						</div>
+						<div class="rover-technical-copy">
+							<p>The Navigation System uses a Jetson Orin NX as the onboard computer. It is composed of three main modules: localization, path planning, and kinematics, all interfacing with the ROS 2 framework and integrated with the Nav2 stack.</p>
+							<p>The localization module is built around a custom Extended Kalman Filter fusing multiple sources: wheel odometry, a 9-axis IMU, CPU-based visual-inertial SLAM, GPU-accelerated visual-inertial SLAM, and GPU-accelerated LiDAR-inertial SLAM.</p>
+							<p>Absolute localization in the ERC reference frame is achieved by solving a custom convex optimization problem using the ranges and bearings of ArUco tag box centres, detected from the LiDAR point cloud via RANSAC-based methods.</p>
+							<p>The <strong>LiDAR Inertial SLAM</strong> package we use is GLIM. It is a LiDAR-inertial SLAM framework designed to remain robust when the LiDAR temporarily loses geometric features and to close loops accurately even with little point cloud overlap.</p>
+							<p>Rather than conventional filtering approaches, it continuously re-optimises a sliding window of past poses and uses direct point cloud matching across all submap pairs for global consistency. Both modules run in real time thanks to GPU acceleration, and GLIM outperforms existing methods on standard benchmarks, particularly in challenging environments.</p>
+						</div>
+					</section>
+
+					<section class="rover-system-section" aria-labelledby="rover-system-title">
+						<div class="rover-section-heading rover-section-heading--system">
+							<p class="eyebrow">02 / System map</p>
+							<h2 id="rover-system-title">Navigation stack<br /><em>overview.</em></h2>
+						</div>
+						<figure class="rover-diagram">
+							<img src={project.diagram} alt="Rover navigation architecture showing localization, kinematics and autonomy" loading="lazy" />
+						</figure>
+					</section>
+
+					<section class="rover-video-section rover-lidar-video-section" aria-labelledby="rover-lidar-video-title">
+						<div class="rover-section-heading">
+							<p class="eyebrow">03 / LiDAR-inertial SLAM</p>
+							<h2 id="rover-lidar-video-title">LiDAR-inertial<br /><em>SLAM.</em></h2>
+						</div>
+						<figure class="rover-video-card rover-video-card--single">
+							<div class="rover-video-frame">
+								<video autoplay muted loop controls preload="metadata" playsinline data-rover-video poster={project.lidarVideo.poster}>
+									<source src={project.lidarVideo.src} type="video/mp4" />
+									Your browser does not support embedded video.
+									</video>
+							</div>
+						</figure>
+					</section>
+
+					<section class="rover-lidar-section" aria-labelledby="rover-lidar-title">
+						<div class="rover-section-heading">
+							<p class="eyebrow">04 / LiDAR traces</p>
+							<h2 id="rover-lidar-title">LiDAR trajectory<br /><em>and map output.</em></h2>
+						</div>
+						<div class="rover-lidar-grid">
+							{project.lidarImages.map((image) => (
+								<figure class="rover-lidar-figure">
+									<img src={image.src} alt={image.alt} loading="lazy" />
+								</figure>
+							))}
+						</div>
+					</section>
+
+					<section class="rover-video-section rover-vio-section" aria-labelledby="rover-vio-title">
+						<div class="rover-section-heading">
+							<p class="eyebrow">05 / VIO</p>
+							<h2 id="rover-vio-title">Visual-inertial<br /><em>pose estimation.</em></h2>
+						</div>
+						<figure class="rover-video-card rover-video-card--single">
+							<div class="rover-video-frame">
+								<video autoplay muted loop controls preload="metadata" playsinline data-rover-video poster={project.vioVideo.poster}>
+										<source src={project.vioVideo.src} type="video/mp4" />
+										Your browser does not support embedded video.
+									</video>
+							</div>
+						</figure>
+					</section>
+
+					{'repo' in project && (
+						<section class="rover-repo-link">
+							<p class="eyebrow">06 / Source</p>
+							<a class="repo-link" href={project.repo} target="_blank" rel="noreferrer">Open ERC_NAV on GitHub <span>-></span></a>
+						</section>
+					)}
+
 				</div>
-			</div>
+			) : project.body.length > 0 ? (
+					<div class="article-content">
+						<div class="article-meta">
+							<span>Project notes</span>
+							<span>{project.year}</span>
+						</div>
+					<div class="article-copy">
+						{project.body.map((paragraph) => <p>{paragraph}</p>)}
+						{'repo' in project && <a class="repo-link" href={project.repo} target="_blank" rel="noreferrer">Open repository <span>-></span></a>}
+						{'sourceLinks' in project && (
+							<div class="project-sources">
+								<p class="eyebrow">Sources</p>
+								<div class="project-source-links">
+									{project.sourceLinks.map((source) => (
+										<a class="repo-link" href={source.url} target="_blank" rel="noreferrer">
+											{source.label} <span>-></span>
+										</a>
+									))}
+								</div>
+							</div>
+						)}
+					</div>
+				</div>
+			) : null}
 
 		</article>
 
+		<script>
+			const roverVideos = document.querySelectorAll('[data-rover-video]');
+
+			roverVideos.forEach((video) => {
+				video.muted = true;
+				video.loop = true;
+				video.playsInline = true;
+				video.controls = false;
+
+				video.addEventListener('click', () => {
+					if (!video.controls) {
+						video.pause();
+						video.controls = true;
+						video.closest('.rover-video-frame')?.classList.add('rover-video-controls-visible');
+					}
+				});
+			});
+
+			if ('IntersectionObserver' in window) {
+				const roverVideoObserver = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						const video = entry.target;
+						if (entry.isIntersecting) {
+							video.play().catch(() => {});
+						} else {
+							video.pause();
+						}
+					});
+				}, { threshold: 0.35 });
+
+				roverVideos.forEach((video) => roverVideoObserver.observe(video));
+			} else {
+				roverVideos.forEach((video) => video.play().catch(() => {}));
+			}
+		</script>
+
 		<footer class="site-footer">
 			<p>© 2026 Luca Troger</p>
-			<a href="mailto:hello@lucatroger.com">hello@lucatroger.com <span>-></span></a>
 		</footer>
 	</main>
 </SiteLayout>

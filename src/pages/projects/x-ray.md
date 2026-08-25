@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownProjectLayout.astro
 title: "[Minecraft] Simple xray for lunar client"
 projectTitle: X-Ray
-description: "Overwriting JVM classes at runtime by jsthope"
+description: "Overwriting JVM classes at runtime"
 published: 2025-12-04
 year: 2025
 tags: [Minecraft, Cheats, GhostClient, dll]
@@ -549,14 +549,7 @@ From here, you can extend the logic, implement reach, ESP, ...
 
 ![xray](/hacking/xray.png)
 
-Feel free to dm me on discord : ``jsthop3``
-
-
 ---
 
 ### Credit
 * [https://www.unknowncheats.me/forum/minecraft/713887-jni-defineclass-redefineclass-runtime.html](https://www.unknowncheats.me/forum/minecraft/713887-jni-defineclass-redefineclass-runtime.html)
-
-### Source Code
-The full project is available on GitHub:
-* [https://github.com/jsthope/SimpleLunarXray](https://github.com/jsthope/SimpleLunarXray)
