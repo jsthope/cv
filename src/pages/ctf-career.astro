@@ -1,13 +1,16 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { ctfTeams } from '../data/projects';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => (path.startsWith('/') ? `${base}${path.slice(1)}` : path);
 ---
 
 <SiteLayout title="CTF Career — Luca Troger">
 	<main class="career-page">
 		<header class="site-header project-header">
-			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
-			<a class="back-link" href="/">&lt;- Selected work</a>
+			<a class="monogram" href={base} aria-label="Back to home">LT<span>®</span></a>
+			<a class="back-link" href={base}>&lt;- Selected work</a>
 			<p class="header-location">CTF CAREER</p>
 		</header>
 
@@ -55,7 +58,7 @@ import { ctfTeams } from '../data/projects';
 					<article class="team-entry">
 						<div class="team-number">0{index + 1}</div>
 						<div class={`team-logo team-logo--${team.imageMode}`}>
-							<img src={team.image} alt={`${team.title} logo`} loading="lazy" />
+							<img src={withBase(team.image)} alt={`${team.title} logo`} loading="lazy" />
 						</div>
 						<div class="team-copy">
 							<p>{team.type}</p>

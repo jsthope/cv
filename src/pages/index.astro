@@ -1,12 +1,15 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { projects } from '../data/projects';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => (path.startsWith('/') ? `${base}${path.slice(1)}` : path);
 ---
 
 <SiteLayout>
 	<main class="home-shell">
 		<header class="site-header">
-			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
+			<a class="monogram" href={base} aria-label="Back to home">LT<span>®</span></a>
 			<p class="header-location">Zurich, CH</p>
 		</header>
 
@@ -18,7 +21,7 @@ import { projects } from '../data/projects';
 			</div>
 
 			{projects.map((project) => (
-				<a class={`project-card ${project.className}`} href={'link' in project && project.link ? project.link : `/projects/${project.slug}`}>
+				<a class={`project-card ${project.className}`} href={withBase('link' in project && project.link ? project.link : `/projects/${project.slug}`)}>
 					<div
 						class={`project-image project-image--${project.imageMode}`}
 						style={project.imageMode === 'white' ? 'background-color: #fff;' : undefined}

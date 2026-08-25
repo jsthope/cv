@@ -2,13 +2,15 @@
 import SiteLayout from './SiteLayout.astro';
 
 const { frontmatter } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => (path.startsWith('/') ? `${base}${path.slice(1)}` : path);
 ---
 
 <SiteLayout title={`${frontmatter.title} - Luca Troger`}>
 	<main class="project-page markdown-project-page">
 		<header class="site-header project-header">
-			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
-			<a class="back-link" href="/">&lt;- Selected work</a>
+			<a class="monogram" href={base} aria-label="Back to home">LT<span>®</span></a>
+			<a class="back-link" href={base}>&lt;- Selected work</a>
 			<p class="header-location">{frontmatter.year}</p>
 		</header>
 
@@ -20,7 +22,7 @@ const { frontmatter } = Astro.props;
 			</div>
 
 			<div class={`article-image article-image--${frontmatter.imageMode ?? 'light'}`}>
-				<img src={frontmatter.image} alt={frontmatter.imageAlt ?? frontmatter.title} />
+				<img src={withBase(frontmatter.image)} alt={frontmatter.imageAlt ?? frontmatter.title} />
 			</div>
 
 			<div class="markdown-article">
