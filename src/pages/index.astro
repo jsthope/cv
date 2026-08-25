@@ -18,7 +18,7 @@ import { projects } from '../data/projects';
 			</div>
 
 			{projects.map((project) => (
-				<a class={`project-card ${project.className}`} href={project.link ?? `/projects/${project.slug}`}>
+				<a class={`project-card ${project.className}`} href={'link' in project && project.link ? project.link : `/projects/${project.slug}`}>
 					<div
 						class={`project-image project-image--${project.imageMode}`}
 						style={project.imageMode === 'white' ? 'background-color: #fff;' : undefined}

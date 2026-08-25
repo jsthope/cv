@@ -16,7 +16,7 @@ const { project } = Astro.props;
 	<main class="project-page">
 		<header class="site-header project-header">
 			<a class="monogram" href="/" aria-label="Back to home">LT<span>®</span></a>
-			<a class="back-link" href="/"><- Selected work</a>
+			<a class="back-link" href="/">&lt;- Selected work</a>
 			<p class="header-location">{project.year}</p>
 		</header>
 
@@ -145,7 +145,7 @@ const { project } = Astro.props;
 		</article>
 
 		<script>
-			const roverVideos = document.querySelectorAll('[data-rover-video]');
+			const roverVideos = document.querySelectorAll<HTMLVideoElement>('[data-rover-video]');
 
 			roverVideos.forEach((video) => {
 				video.muted = true;
@@ -165,7 +165,7 @@ const { project } = Astro.props;
 			if ('IntersectionObserver' in window) {
 				const roverVideoObserver = new IntersectionObserver((entries) => {
 					entries.forEach((entry) => {
-						const video = entry.target;
+						const video = entry.target as HTMLVideoElement;
 						if (entry.isIntersecting) {
 							video.play().catch(() => {});
 						} else {
