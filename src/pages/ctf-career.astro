@@ -45,6 +45,22 @@ const withBase = (path: string) => (path.startsWith('/') ? `${base}${path.slice(
 						</div>
 					</article>
 				</div>
+
+				<section class="certifications" aria-labelledby="certifications-title">
+					<div class="certifications-heading">
+						<h3 id="certifications-title">Certs</h3>
+						<p class="eyebrow">Certifications</p>
+					</div>
+					<div class="certification-content">
+						<a class="certification-logo" href="https://www.credly.com/badges/32508a17-96c1-4754-8f54-e309d34cc38a/public_url" target="_blank" rel="noreferrer" aria-label="View the Certified Offensive AI Expert badge on Credly">
+							<img src={withBase('/hacking/htb-certified-offensive-ai-expert-htb-coae.png')} alt="HTB Certified Offensive AI Expert badge" />
+						</a>
+						<div class="certification-copy">
+							<h4>Certified Offensive AI Expert (HTB COAE)</h4>
+							<p>HTB COAE is a hands-on certification assessing knowledge gained by a curriculum co-developed with Google. It covers adversarial ML (evasion, poisoning), prompt injection/jailbreaking, output exploitation (XSS, SQLi, code injection), AI system security (MCP flaws, deployment tampering, reverse engineering), AI defense (guardrails, adversarial training), and AI privacy (membership inference, differential privacy). Aligned with Google SAIF and OWASP Top 10 for ML Security, Agentic, and LLM Apps.</p>
+						</div>
+					</div>
+				</section>
 			</section>
 
 			<div class="career-heading">

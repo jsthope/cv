@@ -571,6 +571,84 @@ a {
 	padding-left: 1.5rem;
 }
 
+.certifications {
+	display: grid;
+	grid-template-columns: 1fr 1.8fr;
+	align-items: start;
+	column-gap: 2rem;
+	margin-top: 4rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(242, 240, 235, 0.18);
+}
+
+.certifications-heading {
+	display: flex;
+	grid-column: 1 / -1;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 2rem;
+}
+
+.certifications-heading .eyebrow {
+	margin: 0.35rem 0 0;
+	text-align: right;
+}
+
+.certifications-heading h3 {
+	margin: 0;
+	color: #f4f1eb;
+	font-size: clamp(2.4rem, 4vw, 4.5rem);
+	font-weight: 500;
+	letter-spacing: -0.08em;
+	line-height: 0.9;
+}
+
+.certification-content {
+	display: grid;
+	grid-template-columns: 150px minmax(0, 1fr);
+	align-items: start;
+	gap: 2rem;
+	grid-column: 1 / -1;
+	width: 100%;
+	margin-left: 0;
+	margin-top: 2rem;
+	padding-left: 2rem;
+}
+
+.certification-logo {
+	display: grid;
+	place-items: center;
+	width: 150px;
+	aspect-ratio: 1;
+	padding: 0.35rem;
+	background: transparent;
+	border: 1px solid rgba(242, 240, 235, 0.16);
+}
+
+.certification-logo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.certification-copy h4 {
+	margin: 0 0 0.8rem;
+	font-size: clamp(1.35rem, 2.2vw, 2rem);
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	line-height: 1.05;
+	color: #f2f0eb;
+}
+
+.certification-copy p {
+	max-width: 52rem;
+	margin: 0;
+	font-size: 0.82rem;
+	line-height: 1.65;
+	color: #aaa69e;
+}
+
 .achievement-source {
 	display: flex;
 	min-height: 1.7rem;
@@ -1745,6 +1823,42 @@ a {
 		min-height: 4rem;
 		margin: 1.5rem 0;
 		transform: translateX(-0.5rem);
+	}
+
+	.certifications {
+		display: block;
+		margin-top: 3rem;
+	}
+
+	.certifications-heading h3 {
+		margin-top: 0;
+		font-size: clamp(2.8rem, 13vw, 5rem);
+	}
+
+	.certification-content {
+		grid-template-columns: 100px minmax(0, 1fr);
+		gap: 1rem;
+		width: 100%;
+		margin-left: 0;
+		margin-top: 1.8rem;
+	}
+
+	.certification-logo {
+		width: 100px;
+		padding: 0.2rem;
+	}
+
+	.certification-copy h4 {
+		margin-bottom: 0.55rem;
+		font-size: clamp(1rem, 4.5vw, 1.35rem);
+		letter-spacing: -0.01em;
+		line-height: 1.05;
+	}
+
+	.certification-copy p {
+		max-width: none;
+		font-size: 0.68rem;
+		line-height: 1.55;
 	}
 
 	.career-heading {
