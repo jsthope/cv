@@ -22,26 +22,42 @@ const withBase = (path: string) => (path.startsWith('/') ? `${base}${path.slice(
 				</div>
 				<div class="achievement-list">
 					<article class="achievement-entry achievement-entry--switzerland">
-						<p class="achievement-source">HackTheBox</p>
-						<p class="achievement-rank">#1 Switzerland</p>
+						<div class="achievement-top">
+							<p class="achievement-source">HackTheBox</p>
+							<span class="achievement-date">November 2025</span>
+						</div>
+						<p class="achievement-rank" aria-label="Number 1, Switzerland">
+							<span class="achievement-number"><i>#</i>1</span>
+							<span class="achievement-scope">Switzerland</span>
+						</p>
 						<div class="achievement-footer">
-							<span>November 2025</span>
+							<span class="achievement-footnote"></span>
 						</div>
 					</article>
 					<article class="achievement-entry achievement-entry--world">
-						<p class="achievement-source">HackTheBox</p>
-						<p class="achievement-rank">#5 World</p>
+						<div class="achievement-top">
+							<p class="achievement-source">HackTheBox</p>
+							<span class="achievement-date">April 2026</span>
+						</div>
+						<p class="achievement-rank" aria-label="Number 5, World">
+							<span class="achievement-number"><i>#</i>5</span>
+							<span class="achievement-scope">World</span>
+						</p>
 						<div class="achievement-footer">
-							<span>April 2026</span>
-						<span class="achievement-footnote">over +4.3M Players</span>
+							<span class="achievement-footnote">over +4.3M players</span>
 						</div>
 					</article>
 					<article class="achievement-entry achievement-entry--shc">
-						<p class="achievement-source">Swiss Hacking Challenge Quals</p>
-						<p class="achievement-rank">#1 Switzerland</p>
+						<div class="achievement-top">
+							<p class="achievement-source">Swiss Hacking Challenge Quals</p>
+							<span class="achievement-date">May 2026</span>
+						</div>
+						<p class="achievement-rank" aria-label="Number 1, Switzerland">
+							<span class="achievement-number"><i>#</i>1</span>
+							<span class="achievement-scope">Switzerland</span>
+						</p>
 						<div class="achievement-footer">
-							<span>May 2026</span>
-							<span class="achievement-footnote">over +350 Players</span>
+							<span class="achievement-footnote">over +350 players</span>
 						</div>
 					</article>
 				</div>

@@ -454,40 +454,27 @@ a {
 }
 
 .achievement-entry {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	height: 15rem;
-	min-height: 15rem;
+	height: 16rem;
 	box-sizing: border-box;
-	padding-top: 1.1rem;
-	border-top: 1px solid rgba(242, 240, 235, 0.2);
-}
-
-.achievement-entry--world,
-.achievement-entry--switzerland,
-.achievement-entry--shc {
-	position: relative;
+	padding: 1.15rem 1.3rem 1.1rem;
 	overflow: hidden;
 	isolation: isolate;
-	padding-left: 1.5rem;
+	background: rgba(0, 0, 0, 0.3);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+	border: 1px solid rgba(242, 240, 235, 0.12);
+	transition: border-color 220ms ease;
 }
 
-.achievement-entry--world::before,
-.achievement-entry--switzerland::before,
-.achievement-entry--shc::before {
-	position: absolute;
-	inset: 0;
-	z-index: 2;
-	content: '';
-	background-position: center;
-	background-size: cover;
-	opacity: 0.22;
-	pointer-events: none;
+.achievement-entry:hover {
+	border-color: rgba(242, 240, 235, 0.32);
 }
 
-.achievement-entry--world::after,
-.achievement-entry--switzerland::after,
-.achievement-entry--shc::after {
+/* Scoreboard screenshot revealed on hover */
+.achievement-entry::after {
 	position: absolute;
 	inset: 0;
 	z-index: 4;
@@ -498,7 +485,7 @@ a {
 	background-size: cover;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 180ms ease;
+	transition: opacity 220ms ease;
 }
 
 .achievement-entry--switzerland::after {
@@ -514,46 +501,7 @@ a {
 	background-position: 24% center;
 }
 
-.achievement-entry--world::before {
-	background-image: url('/hacking/achievement-htb.png');
-}
-
-.achievement-entry--world {
-	background: #000;
-}
-
-.achievement-entry--world::before {
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-.achievement-entry--switzerland::before {
-	background-image: url('/hacking/achievement-htb.png');
-	opacity: 0.22;
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-.achievement-entry--switzerland {
-	background: #000;
-}
-
-.achievement-entry--shc::before {
-	background-image: url('/hacking/achievement-shc.png');
-}
-
-.achievement-entry--shc {
-	background: #000;
-}
-
-.achievement-entry--shc::before {
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-.achievement-entry--world > *,
-.achievement-entry--switzerland > *,
-.achievement-entry--shc > * {
+.achievement-entry > * {
 	position: relative;
 	z-index: 3;
 	transition: opacity 180ms ease;
@@ -565,10 +513,6 @@ a {
 
 .achievement-entry:hover::after {
 	opacity: 1;
-}
-
-.achievement-entry--shc {
-	padding-left: 1.5rem;
 }
 
 .certifications {
@@ -649,61 +593,113 @@ a {
 	color: #aaa69e;
 }
 
-.achievement-source {
+.achievement-top,
+.achievement-footer {
 	display: flex;
-	min-height: 1.7rem;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.achievement-source,
+.achievement-date,
+.achievement-footnote {
 	margin: 0;
 	font-family: 'DM Mono', monospace;
 	font-size: 0.58rem;
-	letter-spacing: 0.07em;
+	letter-spacing: 0.08em;
+	line-height: 1.5;
 	text-transform: uppercase;
-	color: #77746e;
+	color: #85817a;
 }
 
-.achievement-rank {
-	display: grid;
-	place-items: center;
-	flex: 0 0 4rem;
-	height: 4rem;
-	margin: 2.7rem 0 1rem;
-	transform: translateX(-0.75rem);
-	text-align: center;
-	font-size: clamp(1.25rem, 2vw, 1.8rem);
-	font-weight: 500;
-	letter-spacing: -0.06em;
-	line-height: 0.95;
-	color: #f2f0eb;
-}
-
-.achievement-label {
-	margin: -0.4rem 0 1rem;
-	text-align: center;
-	font-size: 0.72rem;
-	line-height: 1.3;
+.achievement-source {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
 	color: #d8d4cc;
 }
 
-.achievement-footer {
-	display: flex;
-	align-items: end;
-	justify-content: space-between;
-	gap: 1rem;
-	margin-top: auto;
-	width: 100%;
-	box-sizing: border-box;
-	padding-right: 1.5rem;
+.achievement-source::before {
+	flex: none;
+	width: 2.2rem;
+	height: 2.2rem;
+	margin: -0.5rem -0.3rem -0.5rem -0.45rem;
+	content: '';
+	background: url('/hacking/achievement-htb.png') center / contain no-repeat;
 }
 
-.achievement-footer span {
-	font-size: 0.72rem;
-	line-height: 1.45;
-	color: #aaa69e;
+.achievement-entry--shc .achievement-source::before {
+	background-image: url('/hacking/achievement-shc.png');
+	-webkit-mask-image: radial-gradient(circle, #000 38%, transparent 52%);
+	mask-image: radial-gradient(circle, #000 38%, transparent 52%);
+}
+
+.achievement-date {
+	flex: none;
+}
+
+.achievement-rank {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.9rem;
+	margin: auto 0;
+}
+
+.achievement-number {
+	display: flex;
+	align-items: flex-start;
+	padding-right: 0.08em;
+	font-size: clamp(4.2rem, 6.4vw, 5.8rem);
+	font-weight: 500;
+	letter-spacing: -0.08em;
+	line-height: 0.8;
+	color: #f4f1eb;
+	background: linear-gradient(175deg, #fff 8%, rgba(244, 241, 235, 0.92) 38%, rgba(244, 241, 235, 0.28) 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	filter: drop-shadow(0 0 1.4rem rgba(255, 255, 255, 0.22));
+}
+
+.achievement-number i {
+	margin: 0.08em 0.08em 0 0;
+	font-size: 0.4em;
+	font-style: normal;
+	letter-spacing: 0;
+	line-height: 1;
+	-webkit-text-fill-color: rgba(244, 241, 235, 0.45);
+}
+
+/* First places in gold */
+.achievement-entry--switzerland .achievement-number,
+.achievement-entry--shc .achievement-number {
+	color: #d9b96e;
+	background-image: linear-gradient(175deg, #fff6dc 8%, rgba(217, 185, 110, 0.95) 42%, rgba(143, 116, 54, 0.4) 100%);
+	filter: drop-shadow(0 0 1.4rem rgba(217, 185, 110, 0.28));
+}
+
+.achievement-entry--switzerland .achievement-number i,
+.achievement-entry--shc .achievement-number i {
+	-webkit-text-fill-color: rgba(217, 185, 110, 0.6);
+}
+
+.achievement-scope {
+	font-family: 'DM Mono', monospace;
+	font-size: 0.66rem;
+	letter-spacing: 0.22em;
+	line-height: 1;
+	text-transform: uppercase;
+	color: #d8d4cc;
 }
 
 .achievement-footnote {
-	max-width: 9rem;
-	text-align: right;
+	min-height: 1.5em;
+}
+
+.achievement-footer {
+	padding-bottom: 0.2rem;
 }
 
 .career-heading {
@@ -1864,36 +1860,13 @@ a {
 	}
 
 	.achievement-list {
-		display: block;
+		grid-template-columns: 1fr;
+		gap: 1rem;
 		margin-top: 3rem;
 	}
 
 	.achievement-entry {
-		height: 12rem;
-		min-height: 12rem;
-		padding: 1.1rem 0 1.5rem;
-	}
-
-	.achievement-entry--shc {
-		padding-left: 1rem;
-		border-left: 0;
-	}
-
-	.achievement-entry--world,
-	.achievement-entry--switzerland {
-		padding-left: 1rem;
-	}
-
-	.achievement-footer {
-		margin-top: auto;
-		width: 100%;
-		padding-right: 1rem;
-	}
-
-	.achievement-rank {
-		min-height: 4rem;
-		margin: 1.5rem 0;
-		transform: translateX(-0.5rem);
+		height: 14rem;
 	}
 
 	.certifications {
