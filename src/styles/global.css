@@ -1310,6 +1310,77 @@ a {
 }
 
 /* Rover project */
+.rover-hero {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2rem;
+}
+
+.rover-hero .article-image {
+	flex: 0 1 800px;
+	margin-left: 0;
+}
+
+.rover-hero-fact {
+	display: flex;
+	flex: 1 1 0;
+	flex-direction: column;
+	align-items: center;
+	min-width: 0;
+	text-align: center;
+}
+
+.rover-hero-rank {
+	display: flex;
+	align-items: flex-start;
+	margin: 0 0 2rem;
+	padding-right: 0.09em;
+	font-size: clamp(6rem, 13vw, 11.5rem);
+	font-weight: 500;
+	letter-spacing: -0.09em;
+	line-height: 0.8;
+	color: #d9b96e;
+	background: linear-gradient(160deg, #fbf3dc 10%, #d9b96e 55%, #8f7436 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.rover-hero-rank span {
+	margin: 0.12em 0.06em 0 0;
+	font-size: 0.36em;
+	letter-spacing: 0;
+	line-height: 1;
+}
+
+.rover-hero-event {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.9rem;
+	max-width: 100%;
+}
+
+.rover-hero-logo {
+	display: block;
+	flex: 0 1 8.5rem;
+	width: 8.5rem;
+	min-width: 0;
+	height: auto;
+	opacity: 0.92;
+}
+
+.rover-hero-year {
+	padding-left: 0.9rem;
+	border-left: 1px solid rgba(242, 240, 235, 0.25);
+	font-size: 1.9rem;
+	font-weight: 500;
+	letter-spacing: -0.06em;
+	line-height: 1;
+	color: #f4f1eb;
+}
+
 .rover-story {
 	margin-top: 8rem;
 }
@@ -1957,6 +2028,18 @@ a {
 
 	.article-content {
 		margin-top: 3.5rem;
+	}
+
+	.rover-hero {
+		display: block;
+	}
+
+	.rover-hero-fact {
+		margin-bottom: 3rem;
+	}
+
+	.rover-hero .article-image {
+		margin-left: auto;
 	}
 
 	.rover-story {

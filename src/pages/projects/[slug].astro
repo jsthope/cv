@@ -29,9 +29,24 @@ const withBase = (path: string) => (path.startsWith('/') ? `${base}${path.slice(
 				<p class="article-intro">{project.intro}</p>
 			</div>
 
-			<div class={`article-image article-image--${'detailImageMode' in project ? project.detailImageMode : project.imageMode}`}>
-				<img src={withBase(project.image)} alt={`Project image: ${project.title}`} />
-			</div>
+			{project.slug === 'rover' ? (
+				<div class="rover-hero">
+					<div class="rover-hero-fact">
+						<p class="rover-hero-rank" aria-label="Number 1"><span>#</span>1</p>
+						<div class="rover-hero-event">
+							<img class="rover-hero-logo" src={withBase('/hacking/erc-logo.svg')} alt="European Rover Challenge" />
+							<span class="rover-hero-year">2026</span>
+						</div>
+					</div>
+					<div class={`article-image article-image--${project.imageMode}`}>
+						<img src={withBase(project.image)} alt={`Project image: ${project.title}`} />
+					</div>
+				</div>
+			) : (
+				<div class={`article-image article-image--${'detailImageMode' in project ? project.detailImageMode : project.imageMode}`}>
+					<img src={withBase(project.image)} alt={`Project image: ${project.title}`} />
+				</div>
+			)}
 
 			{'externalUrl' in project && (
 				<div class="project-external-link">
